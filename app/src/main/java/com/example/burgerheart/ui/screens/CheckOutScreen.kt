@@ -38,6 +38,7 @@ fun CheckOutScreen(
     context: Context
 ) {
     val checkOutItems by viewModel.checkOutItems.collectAsState()
+    val navContrller = navController
 
     Scaffold(
         topBar = {
@@ -64,7 +65,9 @@ fun CheckOutScreen(
 
             LazyColumn {
                 items(checkOutItems) { item ->
-                    BasketItem(burger = item, context)
+                    BasketItem(burger = item, context) {
+                        navContrller.navigate("detail/${item.id}")
+                    }
                 }
             }
             Spacer(modifier = Modifier.height(16.dp))
@@ -83,15 +86,18 @@ fun CheckOutScreen(
     }
 }
 
-@OptIn(ExperimentalCoilApi::class)
+@OptIn(ExperimentalCoilApi::class, ExperimentalMaterialApi::class)
 @Composable
-fun BasketItem(burger: Burger?, context: Context) {
+fun BasketItem(burger: Burger?, context: Context, onItemClick: (Burger) -> Unit) {
     if (burger != null) {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp),
-            elevation = 8.dp
+            elevation = 8.dp,
+            onClick = {
+                onItemClick.invoke(burger)
+            }
         ) {
             Row(
                 modifier = Modifier

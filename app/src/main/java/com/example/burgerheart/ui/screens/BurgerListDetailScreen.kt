@@ -1,8 +1,6 @@
 package com.example.burgerheart.ui.screens
 
-import android.app.Activity
 import android.content.Context
-import android.widget.ScrollView
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -21,17 +19,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
-import com.example.burgerheart.MainActivity
 import com.example.burgerheart.R
-import com.example.burgerheart.model.Burger
 import com.example.burgerheart.ui.viewmodels.BurgerViewModel
 
 
@@ -157,7 +151,11 @@ fun DetailScreen(activity: Context, viewModel: BurgerViewModel) {
                     .fillMaxWidth()
                     .height(50.dp)
             ) {
-                Text(text = "Add to Cart")
+                var txtAddtoCard = "Add to Cart"
+                if (item?.quantity!! > 0) {
+                    txtAddtoCard = "Update Cart"
+                }
+                Text(text = txtAddtoCard)
             }
         }
     }
