@@ -34,5 +34,9 @@ New Features:
 - Special Deals: Offer exclusive deals and discounts on selected burger items to attract and retain customers.
 - User Experience Enhancement:
 - Animations: Incorporate animations throughout the app to enhance user engagement and create a more immersive experience
+  
+
+https://github.com/eiphyuphwe/BurgerShop/assets/20589960/e6206a8e-61f1-40bf-b5f7-a944b523af7d
+
 
   
