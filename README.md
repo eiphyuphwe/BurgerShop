@@ -6,17 +6,17 @@ The Burger Shop Android application provides users with a convenient way to brow
 
 # Key Features
 
-Display a list of burgers.
-View detailed information about a burger, including prices and ingredients.
-Add and remove burgers from the shopping cart.
-Technologies Used
-
-Kotlin: A modern statically typed programming language for multi-platform applications.
-Model View ViewModel (MVVM): An architectural pattern that separates the development of graphical user interfaces from the business logic.
-Retrofit: A type-safe HTTP client for Android and Java, used for executing HTTP requests to fetch data from a specified API.
-Jetpack Compose: A modern UI toolkit designed to simplify UI development, enabling more efficient UI development and powerful customizability.
-Moshi: A modern JSON library for Android and Java, used for parsing JSON into Kotlin and Java objects seamlessly.
-MutableStateFlow: A state holder observable flow that emits the current and new state updates to its collectors.
+- Display a list of burgers.
+- View detailed information about a burger, including prices and ingredients.
+- Add and remove burgers from the shopping cart.
+- 
+# Technologies Used
+- Kotlin: A modern statically typed programming language for multi-platform applications.
+- Model View ViewModel (MVVM): An architectural pattern that separates the development of graphical user interfaces from the business logic.
+- Retrofit: A type-safe HTTP client for Android and Java, used for executing HTTP requests to fetch data from a specified API.
+- Jetpack Compose: A modern UI toolkit designed to simplify UI development, enabling more efficient UI development and powerful customizability.
+- Moshi: A modern JSON library for Android and Java, used for parsing JSON into Kotlin and Java objects seamlessly.
+- MutableStateFlow: A state holder observable flow that emits the current and new state updates to its collectors.
 
 # Future Plans
 
