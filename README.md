@@ -34,3 +34,5 @@ New Features:
 - Special Deals: Offer exclusive deals and discounts on selected burger items to attract and retain customers.
 - User Experience Enhancement:
 - Animations: Incorporate animations throughout the app to enhance user engagement and create a more immersive experience
+
+  
