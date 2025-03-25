@@ -73,7 +73,7 @@ def main():
                 if not result:
                     result = post_general_comment(github=github, file=file, text=response.text)
                 if not result:
-                    raise RepositoryError(f"Error with line comment {response.status_code} : {response.text}")
+                    raise RepositoryError("Failed to post any comments.")
                     
 def post_line_comment(github: GitHub, file: str, text:str, line: int):
     Log.print_green("Posting line", file, line, text)
