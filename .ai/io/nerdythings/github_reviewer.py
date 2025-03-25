@@ -68,6 +68,7 @@ def main():
 
             result = False
             for response in responses:
+                 Log.print_red("AI Response:", response)
                 if response.line:
                     result = post_line_comment(github=github, file=file, text=response.text, line=response.line)
                 if not result:
