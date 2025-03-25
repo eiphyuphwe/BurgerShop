@@ -7,20 +7,49 @@ from ai.line_comment import LineComment
 
 class AiBot(ABC):
     
-    __no_response = "No critical issues found"
-    __problems="errors, issues, memory leaks, possible crashes or unhandled exceptions"
-    __chat_gpt_ask_long="""
-We have an Android Jetpack project that follows the latest Google recommendations.
-The code should use coroutines and must be thread safe. It should not have ANR as well.
+   __no_response = "No critical issues found"
+   __problems = "errors, issues, memory leaks, possible crashes, null pointer exceptions, non-thread-safe operations, and unhandled exceptions"
 
-Could you describe briefly {problems} for the next code with given code?
-Please, also, do not add intro words, just print errors in the format: "line_number : cause effect"
-Line numbers should depend only on the code, not on the diffs.
-If there are no {problems} just say "{no_response}".
+   __chat_gpt_ask_long ="""
+   We have an Android Jetpack-based project following MVVM architecture and the latest Google recommendations.
 
-Code Language: Kotlin/Java
-Android API Level / Jetpack Version: Latest
-Architectural Pattern: MVVM
+   The code should:
+   - Be coroutine-friendly and thread-safe
+   - Avoid blocking the main thread (no ANR risk)
+   - Be free from null pointer exceptions
+   - Follow idiomatic Kotlin syntax and naming conventions
+
+   Could you briefly describe {__problems} in the following code?
+
+   Please strictly follow this output format:
+
+   1. For **any problems**, use this format:
+      `"line_number : cause → effect"`
+      _Example: `23 : Blocking call on main thread → May cause ANR`_
+
+   2. If you see **any optimization suggestions**, clearly write:
+      `"Optimization Suggestion (line X):"`
+      Follow with a short description and an optimized version of the code.
+
+   3. If a **variable or function name is not meaningful**, mention:
+      `"Naming Suggestion (line X): 'foo' is unclear → rename to 'userList'"`
+
+   4. For **null safety problems**, write:
+      `"Null Safety Issue (line X): risk of null pointer → use '?.' or '?:' or 'requireNotNull'"`
+      Also include the improved code.
+
+   5. For **Kotlin syntax improvements**, use:
+      `"Kotlin Syntax Improvement (line X):"`
+      Explain the reason and provide the improved code.
+
+   Include intro or explanation — only the results as per above.
+
+   If no issues found, return this exact message:
+   **"{__no_response}"**
+
+   Code Language: Kotlin
+   Android API: Latest
+   Architecture: MVVM
 
 Full code of the file:
 
