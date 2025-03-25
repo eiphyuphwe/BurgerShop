@@ -12,7 +12,7 @@ class GitHub(Repository):
         self.repo_owner = repo_owner
         self.repo_name = repo_name
         self.pull_number = pull_number
-        self.__header_accept_json = { "Authorization": f"token {token}" }
+        self.__header_accept_json = { "Authorization": f"Bearer {token}" }
         self.__header_authorization = { "Accept": "application/vnd.github+json" }
         self.__url_add_comment = f"https://api.github.com/repos/{repo_owner}/{repo_name}/pulls/{pull_number}/comments"
         self.__url_add_issue = f"https://api.github.com/repos/{repo_owner}/{repo_name}/issues/{pull_number}/comments"
