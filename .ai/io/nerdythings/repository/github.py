@@ -13,7 +13,7 @@ class GitHub(Repository):
         self.repo_name = repo_name
         self.pull_number = pull_number
         self.__header_accept_json = { "Authorization": f"token {token}" }
-        self.__header_authorization = { "Accept": "application/vnd.github.v3+json" }
+        self.__header_authorization = { "Accept": "application/vnd.github+json" }
         self.__url_add_comment = f"https://api.github.com/repos/{repo_owner}/{repo_name}/pulls/{pull_number}/comments"
         self.__url_add_issue = f"https://api.github.com/repos/{repo_owner}/{repo_name}/issues/{pull_number}/comments"
 
@@ -23,7 +23,8 @@ class GitHub(Repository):
             "body": text,
             "commit_id": commit_id,
             "path" : file_path,
-            "position" : line
+            "position" : line,
+            "side" : "RIGHT"
         }
         response = requests.post(self.__url_add_comment, json = body, headers = headers)
         if response.status_code == 200 or response.status_code == 201:
