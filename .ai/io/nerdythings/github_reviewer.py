@@ -75,20 +75,24 @@ def main():
                 if not result:
                     raise RepositoryError("Failed to post any comments.")
                     
-def post_line_comment(github: GitHub, file: str, text:str, line: int):
-    Log.print_green("Posting line", file, line, text)
-    try:
-        git_response = github.post_comment_to_line(
-            text=text,
-            commit_id=Git.get_last_commit_sha(file=file),
-            file_path=file,
-            line=line,
-        )
-        Log.print_yellow("Posted", git_response)
-        return True
-    except RepositoryError as e:
-        Log.print_red("Failed line comment", e)
-        return False
+def post_line_comment(github: GitHub, file: str, text: str, line: int):
+        Log.print_green("Posting line", file, line, text)
+        try:
+            correct_line_number = github.get_line_number_from_diff(file, line)
+            if correct_line_number is None:
+                Log.print_red(f"Could not find line {line} in diff for file {file}")
+                return False
+            git_response = github.post_comment_to_line(
+                text=text,
+                commit_id=Git.get_last_commit_sha(file=file),
+                file_path=file,
+                line=correct_line_number,
+            )
+            Log.print_yellow("Posted", git_response)
+            return True
+        except RepositoryError as e:
+            Log.print_red("Failed line comment", e)
+            return False
 
 def post_general_comment(github: GitHub, file: str, text:str) -> bool:
     Log.print_green("Posting general", file, text)
