@@ -8,14 +8,27 @@ from ai.line_comment import LineComment
 class AiBot(ABC):
     
     __no_response = "No critical issues found"
-    __problems="errors, issues, memory leaks, possible crashes or unhandled exceptions"
+    __problems="errors, issues, memory leaks, possible crashes or unhandled exceptions,kotlin syntax issues"
     __chat_gpt_ask_long="""
 We have an Android Jetpack project that follows the latest Google recommendations.
-The code should use coroutines and must be thread safe. It should not have ANR as well.
+The code should use coroutines and must be thread safe. It should not have ANR as well.Follow idiomatic Kotlin syntax and best practices.
 
 Could you describe briefly {problems} for the next code with given code?
 Please, also, do not add intro words, just print errors in the format: "line_number : cause effect"
 Line numbers should depend only on the code, not on the diffs.
+If there are no {problems} just say "{no_response}".
+
+- If you see **any optimization suggestions**, clearly write:
+     `"Optimization Suggestion (line X):"`
+     Follow with a short description and an optimized version of the code.
+- If a **variable or function name is not meaningful**, mention:
+     `"Naming Suggestion (line X): 'foo' is unclear → rename to 'userList'"`
+- For **null safety problems**, write:
+     `"Null Safety Issue (line X): risk of null pointer → use '?.' or '?:' or 'requireNotNull'"`
+     Also include the improved code.
+- For **Kotlin syntax improvements**, use:
+     `"Kotlin Syntax Improvement (line X):"`
+     Explain the reason and provide the improved code.
 If there are no {problems} just say "{no_response}".
 
 Code Language: Kotlin/Java
